@@ -101,6 +101,7 @@ calcButton.addEventListener('click', () => {
             const size = document.querySelector('.main-size-card.is-active').dataset.value;
             // Применяем минимальный порог.
             let total = Math.max(MIN_BY_SIZE[size], Math.ceil(km * RATES[size]));
+            let duration = Math.min(30, 1 + Math.ceil(km / 80));
 
             // Увеличиваем на 15% и сокращаем время на 30%
             const speed = document.querySelector('.main-speed-card.is-active').dataset.value;
@@ -114,9 +115,10 @@ calcButton.addEventListener('click', () => {
                 to: toInput.value,
                 size: size,
                 distance: km.toFixed(1),
-                speed: speed,
+                duration: duration,
                 rate: RATES[size],
-                total: total
+                total: total,
+                speed: speed
             };
 
             // Выводим результат на экран.
